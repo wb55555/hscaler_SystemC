@@ -1,0 +1,13 @@
+#################
+#   Parameter   #
+#################
+# scl_cfg_mode (0:through 1:scaler)
+1
+# scl_cfg_rsz (0-1)
+0
+# scl_cfg_flt (0-3)
+0
+# Input File Name
+input.bmp
+# Output File Name
+output.bmp
