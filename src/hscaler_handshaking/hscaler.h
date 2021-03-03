@@ -30,20 +30,11 @@ SC_MODULE(hscaler)
 
 	SC_CTOR(hscaler)
 	{
-		itmp_vsync[0].write(true);
-		itmp_vsync[1].write(true);
-		itmp_hsync[0].write(true);
-		itmp_hsync[1].write(true);
-
-		scl_o_vsync.initialize(true);
-		scl_o_hsync.initialize(true);
-
 		SC_METHOD(hscaler_o_vsync);
-		sensitive << clk_scl.pos();
-		dont_initialize();
+		sensitive << clk_scl.pos() << rst_n_scl.neg();
 
 		SC_METHOD(hscaler_o_hsync);
-		sensitive << clk_scl.pos();
+		sensitive << clk_scl.pos() << rst_n_scl.neg();
 
 		SC_CTHREAD(hscaler_main, clk_scl.pos() );
 		reset_signal_is(rst_n_scl, false);

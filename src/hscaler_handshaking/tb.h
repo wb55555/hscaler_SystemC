@@ -29,9 +29,6 @@ SC_MODULE(tb)
 
 	SC_CTOR(tb)
 	{
-		scl_i_vsync.initialize(true);
-		scl_i_hsync.initialize(true);
-
 		SC_CTHREAD(source, clk_scl.pos() );
 		SC_CTHREAD(sink, clk_scl.pos() );
 	}

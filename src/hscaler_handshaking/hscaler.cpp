@@ -4,16 +4,34 @@
 
 void hscaler::hscaler_o_vsync()
 {
-	itmp_vsync[0].write(scl_i_vsync.read() );
-	itmp_vsync[1].write(itmp_vsync[0].read() );
-	scl_o_vsync.write(itmp_vsync[1].read() );
+	if (!rst_n_scl.read())
+	{
+		itmp_vsync[0].write(1);
+		itmp_vsync[1].write(1);
+		scl_o_vsync.write(1);
+	}
+	else
+	{
+		itmp_vsync[0].write(scl_i_vsync.read());
+		itmp_vsync[1].write(itmp_vsync[0].read());
+		scl_o_vsync.write(itmp_vsync[1].read());
+	}
 }
 
 void hscaler::hscaler_o_hsync()
 {
-	itmp_hsync[0].write(scl_i_hsync.read());
-	itmp_hsync[1].write(itmp_hsync[0].read());
-	scl_o_hsync.write(itmp_hsync[1].read());
+	if (!rst_n_scl.read())
+	{
+		itmp_hsync[0].write(1);
+		itmp_hsync[1].write(1);
+		scl_o_hsync.write(1);
+	}
+	else
+	{
+		itmp_hsync[0].write(scl_i_hsync.read());
+		itmp_hsync[1].write(itmp_hsync[0].read());
+		scl_o_hsync.write(itmp_hsync[1].read());
+	}
 }
 
 void hscaler::hscaler_main()

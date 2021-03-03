@@ -210,7 +210,6 @@ void tb::sink()
 	wbmp->WriteHeader(wheader);
 
 	//receive pixel data
-	wait(4);
 	scl_o_data_rdy.write(0);
 	while (scl_o_vsync.read() )
 	{
